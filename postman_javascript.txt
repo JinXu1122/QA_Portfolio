@@ -1,0 +1,16 @@
+// Test 1: Check if the server responded with 200 OK
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// Test 2: Verify the response is an array (list of posts)
+pm.test("Response is a list of posts", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.be.an("array");
+});
+
+// Test 3: Ensure the posts belong to the correct user
+pm.test("Posts belong to User 1", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData[0].userId).to.eql(1);
+});

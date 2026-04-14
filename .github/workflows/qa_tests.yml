@@ -1,0 +1,31 @@
+name: Automated QA Tests
+
+# 1. WHEN SHOULD THIS RUN?
+# This tells GitHub to run the tests every time code is pushed
+on: [push, pull_request]
+
+jobs:
+  test:
+    # 2. WHERE SHOULD IT RUN?
+    # This gives us a free, fresh Linux computer in the cloud
+    runs-on: ubuntu-latest
+
+    steps:
+    # 3. WHAT SHOULD IT DO? (The Steps)
+    
+    - name: Get the Code
+      uses: actions/checkout@v4
+
+    - name: Install Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install QA Tools (Selenium, Pytest, Requests)
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest selenium requests
+
+    - name: Run All Automated Tests
+      run: |
+        pytest
