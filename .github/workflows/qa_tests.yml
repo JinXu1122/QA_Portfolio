@@ -23,6 +23,7 @@ jobs:
 
     - name: Install QA Tools (Selenium, Pytest, Requests)
       run: |
+        pip install pytest selenium requests webdriver-manager
         python -m pip install --upgrade pip
         pip install pytest selenium requests
 

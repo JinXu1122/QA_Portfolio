@@ -19,6 +19,9 @@ def driver():
         "safebrowsing.enabled": False
     })
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_argument("--headless") # Essential for CI/CD
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
     # 2. SETUP: Open browser and go to the site
     driver = webdriver.Chrome(options=chrome_options)
